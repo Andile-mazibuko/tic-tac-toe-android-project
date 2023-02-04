@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Integer num = 0;
+    Integer num = 0,playerX = 0, playerO = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,27 +19,23 @@ public class MainActivity extends AppCompatActivity {
     public void buttonClicked(View v)
     {
         num+=1;
+
         Button button = (Button) v;
         button.setEnabled(false);
         String player = "X";
 
-
-
         if(num%2 != 0)
         {
-
             button.setText(player);
+            playerX++;
         }else
         {
             player = "O";
             button.setText(player);
-
+            playerO++;
         }
         check(player);
 
-      //  Toast.makeText(this, ""+button.getText(), Toast.LENGTH_SHORT).show();
-        
-        //return buttonId;
     }
     public void check(String player)
     {
@@ -54,14 +51,29 @@ public class MainActivity extends AppCompatActivity {
         Button btn20 = (Button) findViewById(R.id.btn20);
         Button btn21 = (Button) findViewById(R.id.btn21);
         Button btn22 = (Button) findViewById(R.id.btn22);
-
+        Button[] buttons = {btn00,btn01,btn02,btn10,btn11,btn12,btn20,btn21,btn22};
         if((btn00.getText().equals(player) && btn01.getText().equals(player) && btn02.getText().equals(player)) ||
-                (btn00.getText().equals(player) && btn11.getText().equals(player) && btn22.getText().equals(player)) )
+                (btn10.getText().equals(player) && btn11.getText().equals(player) && btn12.getText().equals(player)) ||
+                (btn20.getText().equals(player) && btn21.getText().equals(player) && btn22.getText().equals(player)) ||
+
+                (btn00.getText().equals(player) && btn11.getText().equals(player) && btn22.getText().equals(player)) ||
+                (btn02.getText().equals(player) && btn11.getText().equals(player) && btn20.getText().equals(player)) ||
+
+                (btn00.getText().equals(player) && btn10.getText().equals(player) && btn20.getText().equals(player)) ||
+                (btn01.getText().equals(player) && btn11.getText().equals(player) && btn21.getText().equals(player)) ||
+                (btn02.getText().equals(player) && btn12.getText().equals(player) && btn22.getText().equals(player))
+
+        )
         {
             Toast.makeText(this, "Player{ " +player+" } won this round", Toast.LENGTH_SHORT).show();
+            for(int i = 0; i < buttons.length; i++)
+            {
+                buttons[i].setEnabled(false);
+            }
         }
 
     }
+// method to execute after the player has played 3 times
 
 
 }
