@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn21 = (Button) findViewById(R.id.btn21);
         Button btn22 = (Button) findViewById(R.id.btn22);
         Button[] buttons = {btn00,btn01,btn02,btn10,btn11,btn12,btn20,btn21,btn22};
+
         if((btn00.getText().equals(player) && btn01.getText().equals(player) && btn02.getText().equals(player)) ||
                 (btn10.getText().equals(player) && btn11.getText().equals(player) && btn12.getText().equals(player)) ||
                 (btn20.getText().equals(player) && btn21.getText().equals(player) && btn22.getText().equals(player)) ||
